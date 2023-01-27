@@ -6,14 +6,14 @@ import { Link } from "react-router-dom";
 export function NoteEdit() {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
-    const [body, setInRepertoireSince] = useState("");
+    const [body, setBody] = useState("");
     let NoteId = useParams().NoteId;
     const navigate = useNavigate();
 
     const loadJSON = (data) => {
         setTitle(data.title);
         setAuthor(data.author);
-        setInRepertoireSince(data.body);
+        setBody(data.body);
     }
 
     const fetchJSON = () => {
@@ -60,15 +60,15 @@ export function NoteEdit() {
 
     return (
         <div className="edit-note">
-            <h3>ID: { NoteId }</h3>
-            <Link to={`/note/${NoteId}`}>Go Back</Link>
+            <p>ID: { NoteId }</p>
+            <Link to={`/note/${NoteId}`}>Return</Link>
             <form onSubmit={(e) => {handleSubmit(e, title, author, body)}}>
                 <label>title</label>
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}></input>
                 <label>author</label>
                 <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)}></input>
                 <label>body</label>
-                <input type="text" value={body} onChange={(e) => setInRepertoireSince(e.target.value)}></input>
+                <input type="text" value={body} onChange={(e) => setBody(e.target.value)}></input>
                 <input type="submit" value="submit" />
             </form>
             <button onClick={ () => deleteNote() }>Delete</button>

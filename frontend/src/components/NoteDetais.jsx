@@ -26,15 +26,13 @@ export function NoteDetails ({json}) {
 
     useEffect(fetchJSON, []);
 
-    console.log(NoteId)
-
     return (
         <div className="notedetail">
             <Link to={`/`}>Go Back</Link>
-            <h2>Title: { note.title } </h2>
-            <h3>ID: { NoteId }</h3>
-            <h3>body: { note.body } </h3>
-            <h3>Author: { note.author } </h3>
+            <p>Title: { note.title } </p>
+            <p>ID: { NoteId }</p>
+            <p>body: { note.body } </p>
+            <p>Author: { note.author } </p>
             <Link to={`/note/${NoteId}/edit`}>Edit Note</Link>
         </div>
     )

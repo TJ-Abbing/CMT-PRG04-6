@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 export function Notes () {
 
-    const [notes, setSongs] = useState([]);
+    const [notes, setNotes] = useState([]);
 
-    const songsList = notes.map((note) => (
+    const notesList = notes.map((note) => (
         <Note json={ note } />
     ));
 
     const loadJSON = (data) => {
-        setSongs(data.items);
+        setNotes(data.items);
     }
 
     const fetchJSON = () => {
@@ -19,7 +19,7 @@ export function Notes () {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         }
-        // const url = 'http://145.24.222.193:8000/notes'
+
         const url = 'https://docent.cmi.hro.nl/bootb/demo/notes/'
 
         fetch(url, options)
@@ -33,9 +33,9 @@ export function Notes () {
     return (
         <div className="notes">
             <Link to={`/create`}>Create Note</Link>
-            <h1>Note Collection</h1>
-            <h2>Notes:</h2>
-            <div>{ songsList }</div>
+            <p>Note Collection</p>
+            <p>Notes:</p>
+            <div>{ notesList }</div>
         </div>
     )
 }

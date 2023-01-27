@@ -18,19 +18,18 @@ export function NoteCreate() {
 
     const [title, setTitle] = useState();
     const [author, setAuthor] = useState();
-    const [body, setInRepertoireSince] = useState();
-    console.log(title, author, body)
+    const [body, setBody] = useState();
 
     return (
-        <div className="create-note">
-            <Link to={`/`}>Go Back</Link>
+        <div>
+            <Link to={`/`}>Return</Link>
             <form onSubmit={(e) => {handleSubmit(e, title, author, body)}}>
-                <label>title</label>
+                <label>Title</label>
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}></input>
-                <label>author</label>
+                <label>Author</label>
                 <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)}></input>
-                <label>body</label>
-                <input type="text" value={body} onChange={(e) => setInRepertoireSince(e.target.value)}></input>
+                <label>Body</label>
+                <input type="text" value={body} onChange={(e) => setBody(e.target.value)}></input>
                 <input type="submit" value="submit" />
             </form>
         </div>
