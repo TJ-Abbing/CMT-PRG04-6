@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export function NoteDetails ({json}) {
@@ -27,8 +27,8 @@ export function NoteDetails ({json}) {
     useEffect(fetchJSON, []);
 
     return (
-        <div className="notedetail">
-            <Link to={`/`}>Go Back</Link>
+        <div>
+            <Link to={`/`}>Return</Link>
             <p>Title: { note.title } </p>
             <p>ID: { NoteId }</p>
             <p>body: { note.body } </p>

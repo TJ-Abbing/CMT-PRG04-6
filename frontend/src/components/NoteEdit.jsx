@@ -59,7 +59,7 @@ export function NoteEdit() {
     useEffect(fetchJSON, []);
 
     return (
-        <div className="edit-note">
+        <div>
             <p>ID: { NoteId }</p>
             <Link to={`/note/${NoteId}`}>Return</Link>
             <form onSubmit={(e) => {handleSubmit(e, title, author, body)}}>
