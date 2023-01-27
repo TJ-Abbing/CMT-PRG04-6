@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Notes } from "./notes/Notes";
+import { Notes } from "./components/Notes";
 
 export function App() {
     return (

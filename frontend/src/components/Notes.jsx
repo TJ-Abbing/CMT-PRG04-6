@@ -6,7 +6,7 @@ export function Notes () {
 
     const [notes, setNotes] = useState([]);
 
-    const notesList = Notes.map((note) => (
+    const notesList = notes.map((note) => (
         <Note json={ note } />
     ));
 
