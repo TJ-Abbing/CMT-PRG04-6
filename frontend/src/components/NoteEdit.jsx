@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export function EditSong() {
+export function NoteEdit() {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
-    const [inRepertoireSince, setInRepertoireSince] = useState("");
-    let songId = useParams().songId;
+    const [body, setInRepertoireSince] = useState("");
+    let NoteId = useParams().NoteId;
     const navigate = useNavigate();
 
     const loadJSON = (data) => {
@@ -21,7 +21,7 @@ export function EditSong() {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         }
-        const url =  `https://docent.cmi.hro.nl/bootb/demo/notes/${songId}`;
+        const url =  `https://docent.cmi.hro.nl/bootb/demo/notes/${NoteId}`;
 
         fetch(url, options)
             .then(response => response.json())
@@ -29,27 +29,27 @@ export function EditSong() {
             .catch(err => console.error(err));
     }
 
-    const handleSubmit = (event, title, author, inRepertoireSince) => {
+    const handleSubmit = (event, title, author, body) => {
         event.preventDefault();
         const options = {
             method: 'PUT',
             headers:  { 'Accept': 'application/json', 'Content-type': 'application/json'},
-            body: JSON.stringify({"title": title, "author": author, "body": inRepertoireSince})
+            body: JSON.stringify({"title": title, "author": author, "body": body})
         }
-        const url = `https://docent.cmi.hro.nl/bootb/demo/notes/${songId}`
+        const url = `https://docent.cmi.hro.nl/bootb/demo/notes/${NoteId}`
 
         fetch(url, options)
             .then((response) => response.json())
-            .then((data) => navigate(`/song/${songId}`))
+            .then((data) => navigate(`/note/${NoteId}`))
             .catch((err) => console.error(err));
     }
 
-    const deleteSong = () => {
+    const deleteNote = () => {
         const options = {
             method: 'DELETE',
             headers: { 'Accept': 'application/json' }
         }
-        let url = `https://docent.cmi.hro.nl/bootb/demo/notes/${songId}`;
+        let url = `https://docent.cmi.hro.nl/bootb/demo/notes/${NoteId}`;
 
         fetch(url, options)
             .then(() => navigate("/"))
@@ -59,19 +59,19 @@ export function EditSong() {
     useEffect(fetchJSON, []);
 
     return (
-        <div className="edit-song">
-            <h3>ID: { songId }</h3>
-            <Link to={`/song/${songId}`}>Go Back</Link>
-            <form onSubmit={(e) => {handleSubmit(e, title, author, inRepertoireSince)}}>
+        <div className="edit-note">
+            <h3>ID: { NoteId }</h3>
+            <Link to={`/note/${NoteId}`}>Go Back</Link>
+            <form onSubmit={(e) => {handleSubmit(e, title, author, body)}}>
                 <label>title</label>
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}></input>
                 <label>author</label>
                 <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)}></input>
-                <label>inRepertoireSince</label>
-                <input type="text" value={inRepertoireSince} onChange={(e) => setInRepertoireSince(e.target.value)}></input>
+                <label>body</label>
+                <input type="text" value={body} onChange={(e) => setInRepertoireSince(e.target.value)}></input>
                 <input type="submit" value="submit" />
             </form>
-            <button onClick={ () => deleteSong() }>Delete</button>
+            <button onClick={ () => deleteNote() }>Delete</button>
         </div>
     )
 }

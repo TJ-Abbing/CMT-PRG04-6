@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export function SongDetail ({json}) {
-    const [song, setSong] = useState({})
-    let songId = useParams().songId;
+export function NoteDetails ({json}) {
+    const [note, setNote] = useState({})
+    let NoteId = useParams().NoteId;
 
     const loadJSON = (data) => {
-        setSong(data);
+        setNote(data);
     }
 
     const fetchJSON = () => {
@@ -16,7 +16,7 @@ export function SongDetail ({json}) {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         }
-        const url =  `https://docent.cmi.hro.nl/bootb/demo/notes/${songId}`;
+        const url =  `https://docent.cmi.hro.nl/bootb/demo/notes/${NoteId}`;
 
         fetch(url, options)
             .then(response => response.json())
@@ -26,16 +26,16 @@ export function SongDetail ({json}) {
 
     useEffect(fetchJSON, []);
 
-    console.log(songId)
+    console.log(NoteId)
 
     return (
-        <div className="songdetail">
+        <div className="notedetail">
             <Link to={`/`}>Go Back</Link>
-            <h2>Title: { song.title } </h2>
-            <h3>ID: { songId }</h3>
-            <h3>inRepertoireSince: { song.body } </h3>
-            <h3>Author: { song.author } </h3>
-            <Link to={`/song/${songId}/edit`}>Edit Song</Link>
+            <h2>Title: { note.title } </h2>
+            <h3>ID: { NoteId }</h3>
+            <h3>body: { note.body } </h3>
+            <h3>Author: { note.author } </h3>
+            <Link to={`/note/${NoteId}/edit`}>Edit Note</Link>
         </div>
     )
 }

@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Songs } from "./components/Songs";
-import { CreateSong } from "./components/CreateSong";
-import { SongDetail } from "./components/SongDetail";
-import { EditSong } from "./components/EditSong";
+import { Notes } from "./components/Notes";
+import { NoteCreate } from "./components/NoteCreate";
+import { NoteDetails } from "./components/NoteDetais";
+import { NoteEdit } from "./components/NoteEdit";
 
 export function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={ <Songs /> }></Route>
-                <Route path="/create" element={ <CreateSong /> }></Route>
-                <Route path="/song/:songId" element={ <SongDetail /> }></Route>
-                <Route path="/song/:songId/edit/" element={ <EditSong /> }></Route>
+                <Route path="/" element={ <Notes /> }></Route>
+                <Route path="/create" element={ <NoteCreate /> }></Route>
+                <Route path="/note/:NoteId" element={ <NoteDetails /> }></Route>
+                <Route path="/note/:NoteId/edit/" element={ <NoteEdit /> }></Route>
             </Routes>
         </BrowserRouter>
     );
