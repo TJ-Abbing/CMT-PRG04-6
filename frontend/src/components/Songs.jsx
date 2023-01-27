@@ -1,17 +1,17 @@
-import { Note } from "./Note";
+import { Song } from "./Song";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export function Notes () {
+export function Songs () {
 
-    const [notes, setNotes] = useState([]);
+    const [songs, setSongs] = useState([]);
 
-    const notesList = notes.map((note) => (
-        <Note json={ note } />
+    const songsList = songs.map((song) => (
+        <Song json={ song } />
     ));
 
     const loadJSON = (data) => {
-        setNotes(data.items);
+        setSongs(data.items);
     }
 
     const fetchJSON = () => {
@@ -19,6 +19,7 @@ export function Notes () {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         }
+        // const url = 'http://145.24.222.193:8000/songs'
         const url = 'https://docent.cmi.hro.nl/bootb/demo/notes/'
 
         fetch(url, options)
@@ -30,11 +31,11 @@ export function Notes () {
     useEffect(fetchJSON)
     
     return (
-        <div className="notes">
-            <Link to={`/create`}>Create note</Link>
-            <h1>Notes Collection</h1>
-            <h2>Notes:</h2>
-            <div>{ notesList }</div>
+        <div className="songs">
+            <Link to={`/create`}>Create Song</Link>
+            <h1>Song Collection</h1>
+            <h2>Songs:</h2>
+            <div>{ songsList }</div>
         </div>
     )
 }
